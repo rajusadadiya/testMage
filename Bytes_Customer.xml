@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Bytes_Customer>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Bytes_Customer>
+    </modules>
+</config>

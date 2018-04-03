@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Bytes_Ustheme>
+      <version>1.0.0</version>
+    </Bytes_Ustheme>
+  </modules>
+  <global>
+    <blocks>
+      <ustheme>
+        <class>Bytes_Ustheme_Block</class>
+      </ustheme>
+    </blocks>
+    <helpers>
+      <ustheme>
+        <class>Bytes_Ustheme_Helper</class>
+      </ustheme>
+      <catalogsearch>
+        <rewrite>
+          <data>Bytes_Ustheme_Helper_Catalogsearch</data>
+        </rewrite>        
+      </catalogsearch>
+    </helpers>
+    <models>
+      <ustheme>
+        <class>Bytes_Ustheme_Model</class>
+      </ustheme>
+      <catalogsearch>
+        <rewrite>
+          <layer>Bytes_Ustheme_Model_CatalogsearchLayer</layer>
+        </rewrite>
+      </catalogsearch>
+    </models>
+  </global>
+  <frontend>
+    <layout>
+      <updates>
+        <ustheme module="ustheme">
+          <file>ustheme.xml</file>
+        </ustheme>
+      </updates>
+    </layout>
+  </frontend>
+</config>

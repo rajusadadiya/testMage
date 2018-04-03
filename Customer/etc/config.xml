@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Bytes_Customer>
+      <version>1.0.2</version>
+    </Bytes_Customer>
+  </modules>
+
+  <frontend>
+      <routers>
+          <customer>
+            <args>
+              <modules>
+                <customeraccount before="Mage_Customer">Bytes_Customer</customeraccount>
+              </modules>
+            </args>
+          </customer>       
+          <md_membership>
+            <args>
+              <modules>
+                <bytes_customer before="MD_Membership">Bytes_Customer</bytes_customer>
+              </modules>
+            </args>
+          </md_membership>
+          <bytescustomer>
+              <use>standard</use>
+              <args>
+                  <module>Bytes_Customer</module>
+                  <frontName>bytescustomer</frontName>
+              </args>
+          </bytescustomer>
+      </routers>
+      <events>
+        <!-- <controller_action_predispatch>
+          <observers>
+              <check_user_current_website>
+                  <type>singleton</type>
+                  <class>bytescustomer/observer</class>
+                  <method>checkUserWebsite</method>
+              </check_user_current_website>
+          </observers>
+        </controller_action_predispatch> -->
+      </events>
+      <layout>
+        <updates>
+          <bytescustomer module="bytescustomer">
+            <file>bytes_customer.xml</file>
+          </bytescustomer>
+        </updates>
+      </layout>
+  </frontend>
+
+  <global>
+    <blocks>
+        <bytescustomer>
+            <class>Bytes_Customer_Block</class>
+        </bytescustomer>
+        <!-- <md_membership>
+          <rewrite>
+               <adminhtml_subscribers_grid>Bytes_Customer_Block_Adminhtml_Customer_Subscriber_Grid</adminhtml_subscribers_grid>
+          </rewrite>
+        </md_membership> -->        
+    </blocks>    
+    <helpers>
+        <bytescustomer>
+            <class>Bytes_Customer_Helper</class>
+        </bytescustomer>
+    </helpers>
+    <models>
+      <md_membership>
+        <rewrite>
+          <subscribers>Bytes_Customer_Model_Subscribers</subscribers>
+          <observer>Bytes_Customer_Model_MDObserver</observer>
+        </rewrite>
+      </md_membership>
+      <bytescustomer>
+        <class>Bytes_Customer_Model</class>
+        <resourceModel>bytescustomer_resource</resourceModel>
+      </bytescustomer>
+      <bytescustomer_resource>
+        <class>Bytes_Customer_Model_Resource</class>
+        <entities>
+          <customer>
+            <table>bytes_state_customer</table>
+          </customer>
+        </entities>
+      </bytescustomer_resource>
+    </models>
+    <resources>
+      <bytescustomer>
+        <setup>
+            <module>Bytes_Customer</module>
+        </setup>
+        <connection>
+            <use>core_setup</use>
+        </connection>
+      </bytescustomer>
+      <bytescustomer_write>
+          <connection>
+              <use>core_write</use>
+          </connection>
+      </bytescustomer_write>
+      <bytescustomer_read>
+          <connection>
+              <use>core_read</use>
+          </connection>
+      </bytescustomer_read>
+    </resources> 
+  </global>
+</config> 

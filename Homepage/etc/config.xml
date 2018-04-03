@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Bytes_Homepage>
+      <version>1.0.0</version>
+    </Bytes_Homepage>
+  </modules>
+  <global>
+    <page>
+      <layouts>
+        <homepage translate="label">
+          <label>USLegal Homepage</label>
+            <template>page/homepage.phtml</template>
+          <layout_handle>us_home_page</layout_handle>
+        </homepage>
+        <!-- add more layouts here -->
+      </layouts>
+    </page>
+  </global>
+</config>
