@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/** Bytes_Core menu.xml
+ * @category    BytesTechnolab
+ * @package     Bytes_Core
+ * @author      Bytes Magento Team
+ * @copyright   Bytes Technolab (http://www.bytestechnolab.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Bytes_Core::base" title="Bytes Technolab" module="Bytes_Core" sortOrder="70" resource="Bytes_Core::base"/>
+    </menu>
+</config>

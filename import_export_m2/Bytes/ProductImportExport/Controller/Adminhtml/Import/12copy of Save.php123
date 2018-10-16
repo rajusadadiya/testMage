@@ -1,0 +1,96 @@
+<?php
+namespace Bytes\ProductImportExport\Controller\Adminhtml\Import;
+
+class Save extends \Bytes\ProductImportExport\Controller\Adminhtml\Import {
+    
+    const FILED_DATA_FILE_NAME = "default_fields.csv";    
+
+    public function execute() { 
+        $defaultAttr = $this->getDefaultFields();        
+        $requestedFile = $this->getRequest()->getFiles("csvfile");        
+        if($requestedFile && $requestedFile["type"] == 'text/csv'){        
+          try{
+            $csvData = $this->_csv->getData($requestedFile['tmp_name']);
+            $attr = $csvData[0];
+            /*$requireAttr = [];
+            foreach ($attr as $attrItem){
+                if(!in_array($attrItem, $defaultAttr)){
+                    $requireAttr[] = $attrItem;
+                }
+            }*/
+            unset($csvData[0]);
+            $productItems = [];
+            foreach ($csvData as $keyIndex => $item){
+                $productItem = [];                        
+                foreach ($item as $key => $productData){
+                    $productItem[$attr[$key]] = $productData;                    
+                }
+                $productItems[] = $productItem;
+            }
+            $collection = [];
+            $sku ='';
+            $customOptionKey = $this->_helper->getCustomOptionKey();
+            foreach ($productItems as $product){
+                if($product["sku"] != ''){
+                    $sku = $product["sku"];
+                }
+                $store = "_";
+                if($product["_store"] != ''){
+                    $store = $product["_store"];
+                }
+                if(in_array($attrkey, $customOptionKey)){
+                    $customOpt = [];
+                    foreach ($customOptionKey as $customOptKey){
+                        $customOpt[$customOptKey] = $product[$customOptKey];
+                        unset($product[$customOptKey]);
+                    }
+                    $collection["_"][$sku]["custom-oprion"][] = $customOpt;
+                }
+                foreach($product as $attrkey => $value){
+                    if($value != ''){
+                        $collection[$store][$sku][$attrkey][] = $value;
+                    }                    
+                }
+            }
+            echo "<pre>";
+            print_r($collection);
+            echo "</pre>";
+//            if(count($requireAttr) != 0){
+//                $this->_coreRegistry->register('require_attribute', $requireAttr);
+//                $this->_forward('index', 'import', 'btimportexport');
+//            }
+          }
+          catch(Exception $e){
+            throw new \Magento\Framework\Exception\LocalizedException(__('Error :%1',$e->getMessage()));
+          }
+        }
+        else{
+          throw new \Magento\Framework\Exception\LocalizedException(__('Invalid file upload attempt.'));
+        }      
+  	/*$resultPage = $this->_resultPageFactory->create();
+        return $resultPage;*/
+    } 
+
+    public function getDefaultFields(){
+        if(file_exists($this->getModuleViewPath())){
+            $data = $this->_csv->getData($this->getModuleViewPath());
+            $fields = [];
+            foreach ($data as $fieldItem){
+                $fields[] = $fieldItem[0];
+            }
+            return $fields;
+        }
+        else{
+            throw new \Magento\Framework\Exception\LocalizedException(__('Data File not found.'));
+        }
+    }
+
+    public function getModuleViewPath()
+    {
+          $viewDir = $this->_directoryReader->getModuleDir(
+              \Magento\Framework\Module\Dir::MODULE_VIEW_DIR,
+              'Bytes_ProductImportExport'
+          );
+          return $viewDir . '/data/'.self::FILED_DATA_FILE_NAME;
+    }
+}

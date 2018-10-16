@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!--
+/** Bytes_ProductImportExport module.xml
+ * @category    BytesTechnolab
+ * @package     Bytes_ProductImportExport
+ * @author      Bytes Magento Team
+ * @copyright   Bytes Technolab (http://www.bytestechnolab.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Bytes_ProductImportExport" setup_version="1.0.0">
+    </module>
+</config>

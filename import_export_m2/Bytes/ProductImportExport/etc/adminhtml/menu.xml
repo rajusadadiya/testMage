@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/** Bytes_ProductImportExport menu.xml
+ * @category    BytesTechnolab
+ * @package     Bytes_ProductImportExport
+ * @author      Bytes Magento Team
+ * @copyright   Bytes Technolab (http://www.bytestechnolab.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Bytes_ProductImportExport::import" title="Import Product" module="Bytes_ProductImportExport" sortOrder="5" resource="Bytes_ProductImportExport::import" parent="Bytes_Core::base"
+                action="btimportexport/import"/>
+    </menu>
+</config>

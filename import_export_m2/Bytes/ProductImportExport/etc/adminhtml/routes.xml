@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!--
+/** Bytes_ProductImportExport routes.xml
+ * @category    BytesTechnolab
+ * @package     Bytes_ProductImportExport
+ * @author      Bytes Magento Team
+ * @copyright   Bytes Technolab (http://www.bytestechnolab.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="btimportexport" frontName="btimportexport">
+            <module name="Bytes_ProductImportExport" />
+        </route>
+    </router>
+</config>
